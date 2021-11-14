@@ -1,37 +1,69 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DeckOfCardsGame {
+    public static final Scanner scanner = new Scanner(System.in);
+    public ArrayList<String> cardsDeck = new ArrayList<String>();
 
     /*
-     * Created a generic type of array list which is accepting only string type
-     */
-    ArrayList<String> arrayList = new ArrayList<>();
-    /*
-     * initialized the size of cards .
+    Simply created a Welcome Message Method without any return type.
      */
 
-    public String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
-    public String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
+    public void welcome() {
+        System.out.println("Welcome to the gaming world of Deck of Cards");
+    }
 
     /*
-     *
-     * in this method initializing the suits in ranks
-     *
+    In this method we have initialized the size of cards.
+    In this I have created String type array of Suits and Ranks to store its value and initialize it.
+    In this we are printing the size of card.
+    In this method we are also printing all the possible combination of card.
      */
-    public void initializeCards() {
 
+    public void deckOfCards() {
+        String[] suits = {"Clubs", "Diamonds", "Hearts", "Spades"};
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "King", "Queen", "Ace"};
         int numOfCards = suits.length * ranks.length;
-
-        /*
-         * assigning unique ranks to the suits
-         */
-        for (int i = 0; i < suits.length; i++) {
-            for (int j = 0; j < ranks.length; j++) {
-                arrayList.add(suits[i]); //storing elements into arraylist
-                arrayList.add(ranks[j]);
+        System.out.println("\nNumber of cards in the deck:" + numOfCards);
+        for (int i = 0; i < ranks.length; i++) {       // First we have to iterate for loop for ranks starting from index 0.
+            for (int j = 0; j < suits.length; j++) {   // Now we have to iterate the suits for all the indexes of ranks
+                cardsDeck.add(ranks[i] + "----->" + suits[j]);
             }
+        }
+        toDisplay(cardsDeck);
+    }
+
+    /*
+    Created a display method to print the array list of cardsDeck.
+    We are using for-each loop to print all the element of ArrayList.
+    We are storing all the elements of cardsDeck arraylist in element.
+     */
+
+    public static void toDisplay(ArrayList<String> cardsDeck) {
+        System.out.println("\nCards in Deck:");
+        for (String element : cardsDeck) {
+            System.out.println(element);
+        }
+        System.out.println();
+    }
+
+    /*
+    In this we have to define no of players should be minimum 2 and maximum 4.
+    So we have use if condition to define no of players.
+    If no of player is not within the range then it will again call this method.
+     */
+
+    public void noOfPlayers() {
+        System.out.print("\nEnter number of players minimum 2 , maximum 4 : ");
+        int player = scanner.nextInt();
+        if (player >= 2 && player <= 4) {
+            System.out.println("\n" + player + " players will play the game");
+        } else {
+            System.out.println("Please enter number of players in the Range");
+            this.noOfPlayers();
+            scanner.close();
         }
     }
 }
