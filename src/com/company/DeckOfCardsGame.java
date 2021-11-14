@@ -21,6 +21,9 @@ public class DeckOfCardsGame {
      *
      */
     public void initializeCards() {
+
+        int numOfCards = suits.length * ranks.length;
+
         /*
          * assigning unique ranks to the suits
          */
